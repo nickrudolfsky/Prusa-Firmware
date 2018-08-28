@@ -1756,6 +1756,7 @@ static void lcd_preheat_menu()
 	  MENU_ITEM(function, PSTR("HIPS -  " STRINGIFY(HIPS_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(HIPS_PREHEAT_HPB_TEMP)), lcd_preheat_hips);
 	  MENU_ITEM(function, PSTR("PP   -  " STRINGIFY(PP_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(PP_PREHEAT_HPB_TEMP)), lcd_preheat_pp);
 	  MENU_ITEM(function, PSTR("FLEX -  " STRINGIFY(FLEX_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(FLEX_PREHEAT_HPB_TEMP)), lcd_preheat_flex);
+      MENU_ITEM(function, PSTR("nozzle -  " STRINGIFY(FARM_PREHEAT_HOTEND_TEMP) "/0"), lcd_preheat_farm_nozzle);
 	  MENU_ITEM(function, _T(MSG_COOLDOWN), lcd_cooldown);
   }
   

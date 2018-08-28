@@ -3127,7 +3127,7 @@ void gcode_M701()
 	st_synchronize();
 
 	if (current_position[Z_AXIS] < 20) current_position[Z_AXIS] += 30;
-	current_position[E_AXIS] += 30;
+	current_position[E_AXIS] += 20;
 	plan_buffer_line(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS], 400 / 60, active_extruder); //fast sequence
 	st_synchronize();
 	current_position[E_AXIS] += 25;
@@ -6960,7 +6960,7 @@ Sigma_Exit:
 		gcode_M701();
 	}
 	break;
-	case 702:
+    case 702: //M702: unload filament
 	{
 #ifdef SNMM
 		if (code_seen('U')) {
@@ -6983,11 +6983,11 @@ Sigma_Exit:
 
 //		extr_unload2();
 		
-		current_position[E_AXIS] -= 45;
+		current_position[E_AXIS] -= 32;
 		plan_buffer_line(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS], 5200 / 60, active_extruder);
         st_synchronize();
-        current_position[E_AXIS] -= 15;
-        plan_buffer_line(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS], 1000 / 60, active_extruder);
+        current_position[E_AXIS] -= 10;
+        plan_buffer_line(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS], 100 / 60, active_extruder);
         st_synchronize();
         current_position[E_AXIS] -= 20;
         plan_buffer_line(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS], 1000 / 60, active_extruder);
@@ -7002,7 +7002,7 @@ Sigma_Exit:
 		delay(100);
 
 
-		WRITE(BEEPER, HIGH);
+		//WRITE(BEEPER, HIGH); // NR disabled beep when unloading filament
 		uint8_t counterBeep = 0;
 		while (!lcd_clicked() && (counterBeep < 50)) {
 			if (counterBeep > 5) WRITE(BEEPER, LOW);
