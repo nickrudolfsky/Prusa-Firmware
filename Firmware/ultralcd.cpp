@@ -1750,13 +1750,14 @@ static void lcd_preheat_menu()
 	  MENU_ITEM(function, _T(MSG_COOLDOWN), lcd_cooldown);
 	  MENU_ITEM(function, PSTR("ABS    -  " STRINGIFY(ABS_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(ABS_PREHEAT_HPB_TEMP)), lcd_preheat_abs);
   } else {
+      MENU_ITEM(function, PSTR("PLA Nozzle -  " STRINGIFY(PLA_PREHEAT_HOTEND_TEMP) "/0"), lcd_preheat_farm_nozzle);
+      MENU_ITEM(function, PSTR("PET Nozzle -  " STRINGIFY(PET_PREHEAT_HOTEND_TEMP) "/0"), lcd_preheat_farm_nozzle);
 	  MENU_ITEM(function, PSTR("PLA  -  " STRINGIFY(PLA_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(PLA_PREHEAT_HPB_TEMP)), lcd_preheat_pla);
 	  MENU_ITEM(function, PSTR("PET  -  " STRINGIFY(PET_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(PET_PREHEAT_HPB_TEMP)), lcd_preheat_pet);
 	  MENU_ITEM(function, PSTR("ABS  -  " STRINGIFY(ABS_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(ABS_PREHEAT_HPB_TEMP)), lcd_preheat_abs);
 	  MENU_ITEM(function, PSTR("HIPS -  " STRINGIFY(HIPS_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(HIPS_PREHEAT_HPB_TEMP)), lcd_preheat_hips);
 	  MENU_ITEM(function, PSTR("PP   -  " STRINGIFY(PP_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(PP_PREHEAT_HPB_TEMP)), lcd_preheat_pp);
 	  MENU_ITEM(function, PSTR("FLEX -  " STRINGIFY(FLEX_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(FLEX_PREHEAT_HPB_TEMP)), lcd_preheat_flex);
-      MENU_ITEM(function, PSTR("nozzle -  " STRINGIFY(FARM_PREHEAT_HOTEND_TEMP) "/0"), lcd_preheat_farm_nozzle);
 	  MENU_ITEM(function, _T(MSG_COOLDOWN), lcd_cooldown);
   }
   
@@ -2292,8 +2293,8 @@ static void lcd_menu_xyz_skew()
 //|01234567890123456789|
 //|Measured skew:  N/A |
 //|--------------------|
-//|Slight skew:   0.12°|
-//|Severe skew:   0.25°|
+//|Slight skew:   0.12ï¿½|
+//|Severe skew:   0.25ï¿½|
 //----------------------
     float angleDiff = eeprom_read_float((float*)(EEPROM_XYZ_CAL_SKEW));
 	lcd_printf_P(_N(
