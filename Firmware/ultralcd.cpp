@@ -1458,6 +1458,24 @@ void lcd_preheat_farm_nozzle()
 	setWatch(); // heater sanity check timer
 }
 
+void lcd_preheat_nozzle_pla()
+{
+  setTargetHotend0(PLA_PREHEAT_HOTEND_TEMP);
+  setTargetBed(0);
+  fanSpeed = 0;
+  lcd_return_to_status();
+  setWatch(); // heater sanity check timer
+}
+
+void lcd_preheat_nozzle_pet()
+{
+  setTargetHotend0(PET_PREHEAT_HOTEND_TEMP);
+  setTargetBed(0);
+  fanSpeed = 0;
+  lcd_return_to_status();
+  setWatch(); // heater sanity check timer
+}
+
 void lcd_preheat_pla()
 {
   setTargetHotend0(PLA_PREHEAT_HOTEND_TEMP);
@@ -1750,8 +1768,8 @@ static void lcd_preheat_menu()
 	  MENU_ITEM(function, _T(MSG_COOLDOWN), lcd_cooldown);
 	  MENU_ITEM(function, PSTR("ABS    -  " STRINGIFY(ABS_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(ABS_PREHEAT_HPB_TEMP)), lcd_preheat_abs);
   } else {
-      MENU_ITEM(function, PSTR("PLA Nozzle -  " STRINGIFY(PLA_PREHEAT_HOTEND_TEMP) "/0"), lcd_preheat_farm_nozzle);
-      MENU_ITEM(function, PSTR("PET Nozzle -  " STRINGIFY(PET_PREHEAT_HOTEND_TEMP) "/0"), lcd_preheat_farm_nozzle);
+      MENU_ITEM(function, PSTR("PLA Nozzle -  " STRINGIFY(PLA_PREHEAT_HOTEND_TEMP) "/0"), lcd_preheat_nozzle_pla);
+      MENU_ITEM(function, PSTR("PET Nozzle -  " STRINGIFY(PET_PREHEAT_HOTEND_TEMP) "/0"), lcd_preheat_nozzle_pet);
 	  MENU_ITEM(function, PSTR("PLA  -  " STRINGIFY(PLA_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(PLA_PREHEAT_HPB_TEMP)), lcd_preheat_pla);
 	  MENU_ITEM(function, PSTR("PET  -  " STRINGIFY(PET_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(PET_PREHEAT_HPB_TEMP)), lcd_preheat_pet);
 	  MENU_ITEM(function, PSTR("ABS  -  " STRINGIFY(ABS_PREHEAT_HOTEND_TEMP) "/" STRINGIFY(ABS_PREHEAT_HPB_TEMP)), lcd_preheat_abs);
